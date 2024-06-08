@@ -19,8 +19,7 @@ jobs:
     - name: Install apt dependencies
       run: |
         sudo apt-get update
-        sudo apt install gettext 
-        sudo apt install libmysqlclient-dev
+        sudo apt install gettext libmysqlclient-dev
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:

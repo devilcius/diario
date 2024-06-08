@@ -12,4 +12,4 @@ class EntryListView(generics.ListAPIView):
     filterset_class = EntryFilter
 
     def get_queryset(self):
-        return Entry.objects.all().order_by('-entry_date')
+        return Entry.objects.all().order_by("-entry_date")

@@ -5,4 +5,4 @@ from api.models import Entry
 class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = '__all__'
+        fields = "__all__"

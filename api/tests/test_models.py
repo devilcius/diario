@@ -8,9 +8,7 @@ class EntryModelTest(TestCase):
 
     def setUp(self):
         self.entry = Entry.objects.create(
-            title="Test Entry",
-            post="This is a test post.",
-            entry_date=timezone.now()
+            title="Test Entry", post="This is a test post.", entry_date=timezone.now()
         )
 
     def test_entry_creation(self):
