@@ -8,4 +8,5 @@ PyMySQL==1.1.1
 drf-yasg==1.21.7
 Faker==24.2.0
 Markdown==3.3.6
+django-filter==23.5
 
