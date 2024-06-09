@@ -16,11 +16,13 @@ Including another URLconf
 """
 
 from api.views import EntryListView
+from rest_framework.authtoken.views import obtain_auth_token
 
 from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("entries/", EntryListView.as_view(), name="entry-list"),
+    path("api/entries/", EntryListView.as_view(), name="entry-list"),
+    path("api/api-token-auth/", obtain_auth_token, name="api_token_auth"),
 ]
