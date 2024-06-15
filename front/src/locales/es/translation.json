@@ -1,0 +1,19 @@
+{
+    "entry.edit.save_button": "Guardar",
+    "entry.list.table.date": "Fecha",
+    "entry.list.table.title": "Título",    
+    "entry-list-title": "Entradas del diario",
+    "entry.list.search": "Buscar",
+    "entry.view.delete_button": "Borrar",
+    "entry.view.delete_confirm": "¿Estás seguro de que quieres borrar esta entrada?",
+    "entry.view.edit_button": "Editar",    
+    "general.loading": "Cargando...",    
+    "login.form.login_button": "Autenticar",
+    "login.form.password": "Contraseña",
+    "login.form.password_placeholder": "Introduce tu contraseña",
+    "login.form.username": "Usuario",
+    "login.form.username_placeholder": "Introduce tu nombre de usuario",
+    "navbar.entries": "Entradas",
+    "navbar.logout": "Cerrar sesión",
+    "navbar.new": "Nueva"
+}
