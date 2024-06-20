@@ -9,12 +9,14 @@ const EntryEditor = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [post, setPost] = useState('');
+    const [entryDate, setEntryDate] = useState('');
 
     const fetchData = useCallback(async () => {
         if (id) {
             const response = await fetchEntry(id);
             setTitle(response.data.title);
             setPost(response.data.post);
+            setEntryDate(new Date(response.data.entry_date).toISOString().slice(0, 16));
         }
     }, [id]);
 
@@ -24,7 +26,11 @@ const EntryEditor = () => {
 
     const handleSave = async (e) => {
         e.preventDefault();
-        const entryData = { title, post, entry_date: new Date() };
+        const entryData = {
+            title,
+            post,
+            entry_date: new Date(entryDate).toISOString()
+        };
 
         if (id) {
             await saveEntry(entryData, id);
@@ -54,6 +60,14 @@ const EntryEditor = () => {
                         rows={10}
                         value={post}
                         onChange={(e) => setPost(e.target.value)}
+                    />
+                </Form.Group>
+                <Form.Group controlId="formEntryDate">
+                    <Form.Label>{t('entry.edit.entry_date')}</Form.Label>
+                    <Form.Control
+                        type="date"
+                        value={entryDate}
+                        onChange={(e) => setEntryDate(e.target.value)}
                     />
                 </Form.Group>
                 <Button variant="primary" type="submit">

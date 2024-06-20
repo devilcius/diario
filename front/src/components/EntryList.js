@@ -90,7 +90,7 @@ const EntryList = () => {
                             <td>
                                 <Link to={`/entries/${entry.id}`}>{entry.title}</Link>
                             </td>
-                            <td>{format(new Date(entry.entry_date), 'PPpp')}</td>
+                            <td>{format(new Date(entry.entry_date), 'PP')}</td>
                         </tr>
                     ))}
                 </tbody>
