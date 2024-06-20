@@ -53,4 +53,14 @@ const deleteEntry = async (id) => {
     });
 }
 
-export { fetchEntries, fetchEntry, saveEntry, deleteEntry };
+const fetchCalendarEntries = async () => {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${API_BASE_URL}/entry-dates/`, {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    });
+    return response.data;
+}
+
+export { fetchEntries, fetchEntry, saveEntry, deleteEntry, fetchCalendarEntries };

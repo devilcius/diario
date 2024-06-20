@@ -6,3 +6,9 @@ class EntrySerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
         fields = "__all__"
+
+
+class EntryDateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Entry
+        fields = ["id", "entry_date"]

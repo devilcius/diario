@@ -135,3 +135,56 @@ class EntryViewSetTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["title"], entry.title)
         self.assertEqual(response.data["post"], entry.post)
+
+
+class EntryCalendarViewTest(APITestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = User.objects.create_superuser(username="testowy", password="test")
+        cls.client = APIClient()
+
+        # Create some entries with different dates
+        now = timezone.now()
+        Entry.objects.create(
+            title="Test Entry 1", post="This is a test post 1.", entry_date=now
+        )
+        Entry.objects.create(
+            title="Test Entry 2",
+            post="This is a test post 2.",
+            entry_date=now - timezone.timedelta(days=1),
+        )
+        Entry.objects.create(
+            title="Test Entry 3",
+            post="This is a test post 3.",
+            entry_date=now - timezone.timedelta(days=2),
+        )
+
+    def setUp(self):
+        # Authenticate user for each test
+        self.client.force_authenticate(user=self.user)
+
+    def test_entry_dates_retrieval(self):
+        url = reverse("entry-calendar")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Check the length of the results array
+        self.assertEqual(len(response.data), 3)
+
+    def test_entries_ordering(self):
+        url = reverse("entry-calendar")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        # Extract entry dates
+        entry_dates = [entry["entry_date"] for entry in response.data]
+
+        # Ensure dates are ordered
+        self.assertEqual(entry_dates, sorted(entry_dates))
+
+    def test_unauthenticated_access(self):
+        # Ensure no user is authenticated
+        self.client.force_authenticate(user=None)
+        url = reverse("entry-calendar")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)

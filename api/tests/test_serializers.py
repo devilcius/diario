@@ -1,9 +1,7 @@
 from rest_framework.test import APITestCase
-from api.serializers import EntrySerializer
+from api.serializers import EntrySerializer, EntryDateSerializer
 from api.models import Entry
 from django.utils import timezone
-from datetime import datetime
-import pytz
 
 
 class EntrySerializerTest(APITestCase):
@@ -34,3 +32,19 @@ class EntrySerializerTest(APITestCase):
             self.entry_attributes["entry_date"].isoformat().replace("+00:00", "Z")
         )
         self.assertEqual(data["entry_date"], entry_date_str)
+
+
+class EntryDateSerializerTest(APITestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        Entry.objects.create(
+            title="Test Entry", post="This is a test post.", entry_date=timezone.now()
+        )
+
+    def test_entry_date_serialization(self):
+        entry = Entry.objects.first()
+        serializer = EntryDateSerializer(entry)
+        # Normalize the date string for comparison
+        entry_date_str = entry.entry_date.isoformat().replace("+00:00", "Z")
+        self.assertEqual(serializer.data["entry_date"], entry_date_str)
