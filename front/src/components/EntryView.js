@@ -39,7 +39,7 @@ const EntryView = () => {
             {entry && (
                 <>
                     <h1>{entry.title}</h1>
-                    <p>{format(new Date(entry.entry_date), 'PPpp')}</p>
+                    <p>{format(new Date(entry.entry_date), 'EEEE  PP')}</p>
                     <ReactMarkdown>{entry.post}</ReactMarkdown>
                     <ButtonGroup>
                         <Button variant='primary' className="mr-2" onClick={handleEdit}>{t('entry.view.edit_button')}</Button>

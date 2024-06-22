@@ -63,4 +63,14 @@ const fetchCalendarEntries = async () => {
     return response.data;
 }
 
-export { fetchEntries, fetchEntry, saveEntry, deleteEntry, fetchCalendarEntries };
+const fetchPreviousYearsEntries = async () => {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${API_BASE_URL}/previous-years-entries/`, {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    });
+    return response.data;
+}
+
+export { fetchEntries, fetchEntry, saveEntry, deleteEntry, fetchCalendarEntries, fetchPreviousYearsEntries };

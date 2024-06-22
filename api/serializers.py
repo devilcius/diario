@@ -11,4 +11,4 @@ class EntrySerializer(serializers.ModelSerializer):
 class EntryDateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Entry
-        fields = ["id", "entry_date"]
+        fields = ["id", "entry_date", "title"]

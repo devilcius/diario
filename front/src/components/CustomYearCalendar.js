@@ -33,17 +33,28 @@ const CustomYearlyCalendar = () => {
         }
     };
 
+    const getEntryForDate = (dateString) => {
+        return entries.find(entry => new Date(entry.entry_date).toISOString().split('T')[0] === dateString);
+    };
+
     const tileContent = ({ date, view }) => {
         const dateString = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString().split('T')[0];
-        if (view === 'month' && markedDates.includes(dateString)) {
-            return <div className="highlight"></div>;
+        if (view === 'month') {
+            const entry = getEntryForDate(dateString);
+            if (entry) {
+                return (
+                    <div
+                        className="highlight"
+                    ></div>
+                );
+            }
         }
         return null;
     };
 
     const onDateClick = (date) => {
         const clickedDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())).toISOString().split('T')[0];
-        const entry = entries.find(entry => new Date(entry.entry_date).toISOString().split('T')[0] === clickedDate);
+        const entry = getEntryForDate(clickedDate);
         if (entry) {
             navigate(`/entries/${entry.id}`);
         }

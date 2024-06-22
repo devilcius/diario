@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 from rest_framework.authtoken.models import Token
+import datetime
 
 
 class EntryViewSetTest(APITestCase):
@@ -186,5 +187,71 @@ class EntryCalendarViewTest(APITestCase):
         # Ensure no user is authenticated
         self.client.force_authenticate(user=None)
         url = reverse("entry-calendar")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class PreviousYearsEntriesViewTest(APITestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        # Create a user
+        cls.user = User.objects.create_user(
+            username="testuser", password="testpassword"
+        )
+        cls.token, _ = Token.objects.get_or_create(user=cls.user)
+
+        # Create entries for the same day in different years
+        today = timezone.now().date()
+        current_time = timezone.now().time()
+        cls.current_year_entry = Entry.objects.create(
+            title="Current Year Entry",
+            post="This is a test entry for the current year.",
+            entry_date=timezone.make_aware(
+                datetime.datetime.combine(today, current_time)
+            ),
+        )
+        cls.previous_year_entry = Entry.objects.create(
+            title="Previous Year Entry",
+            post="This is a test entry for the previous year.",
+            entry_date=timezone.make_aware(
+                datetime.datetime.combine(
+                    today.replace(year=today.year - 1), current_time
+                )
+            ),
+        )
+        cls.two_years_ago_entry = Entry.objects.create(
+            title="Two Years Ago Entry",
+            post="This is a test entry for two years ago.",
+            entry_date=timezone.make_aware(
+                datetime.datetime.combine(
+                    today.replace(year=today.year - 2), current_time
+                )
+            ),
+        )
+
+    def setUp(self):
+        self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token.key)
+
+    def test_get_entries_for_previous_years(self):
+        url = reverse("previous-years-entries")
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Should return 2 entries (excluding the current year's entry)
+        self.assertEqual(len(response.data), 2)
+        self.assertIn(
+            "Previous Year Entry", [entry["title"] for entry in response.data]
+        )
+        self.assertIn(
+            "Two Years Ago Entry", [entry["title"] for entry in response.data]
+        )
+        self.assertNotIn(
+            "Current Year Entry", [entry["title"] for entry in response.data]
+        )
+
+    def test_unauthorized_access(self):
+        self.client.credentials()  # Remove authentication
+        url = reverse("previous-years-entries")
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)

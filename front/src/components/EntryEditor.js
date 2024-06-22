@@ -16,7 +16,9 @@ const EntryEditor = () => {
             const response = await fetchEntry(id);
             setTitle(response.data.title);
             setPost(response.data.post);
-            setEntryDate(new Date(response.data.entry_date).toISOString().slice(0, 16));
+            const entryDate = new Date(response.data.entry_date);
+            const utcDateString = new Date(Date.UTC(entryDate.getFullYear(), entryDate.getMonth(), entryDate.getDate())).toISOString().split('T')[0];
+            setEntryDate(utcDateString);
         }
     }, [id]);
 
@@ -57,7 +59,7 @@ const EntryEditor = () => {
                     <Form.Label>Post</Form.Label>
                     <Form.Control
                         as="textarea"
-                        rows={10}
+                        rows={25}
                         value={post}
                         onChange={(e) => setPost(e.target.value)}
                     />

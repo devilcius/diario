@@ -16,5 +16,6 @@
     "login.form.username_placeholder": "Introduce tu nombre de usuario",
     "navbar.entries": "Entradas",
     "navbar.logout": "Cerrar sesión",
-    "navbar.new": "Nueva"
+    "navbar.new": "Nueva",
+    "navbar.previous_years": "Años anteriores"
 }

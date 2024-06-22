@@ -33,6 +33,7 @@ const App = () => {
           <Nav className="mr-auto">
             <Nav.Link href="/">{t('navbar.entries')}</Nav.Link>
             <Nav.Link href="/entries/edit">{t('navbar.new')}</Nav.Link>
+            <Nav.Link href="/previous-years-entries">{t('navbar.previous_years')}</Nav.Link>
             <Nav.Link onClick={handleLogout}>{t('navbar.logout')}</Nav.Link>
           </Nav>
         </Navbar>
