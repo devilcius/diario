@@ -119,7 +119,7 @@ DATABASES = {
         "OPTIONS": {
             "charset": "utf8mb4",
             "init_command": "SET character_set_connection=utf8mb4, collation_connection=utf8mb4_unicode_ci",
-        }
+        },
     },
 }
 
