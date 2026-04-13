@@ -69,15 +69,22 @@ const EntryList = () => {
     }
 
     return (
-        <Container>
-            <FormControl
-                type="search"
-                placeholder={ t('entry.list.search') }
-                className="mb-3"
-                value={search}
-                onChange={handleSearch}
-            />
-            <Table striped bordered hover>
+        <Container className="entry-list-page">
+            <div className="entry-list-toolbar">
+                <FormControl
+                    type="search"
+                    placeholder={ t('entry.list.search') }
+                    className="entry-list-toolbar__search"
+                    value={search}
+                    onChange={handleSearch}
+                />
+                <p className="entry-list-toolbar__summary">
+                    {entries.length > 0
+                        ? t('entry.list.summary', { count: entries.length, page: currentPage, totalPages })
+                        : t('entry.list.empty')}
+                </p>
+            </div>
+            <Table hover responsive className="entry-table">
                 <thead>
                     <tr>
                         <th>{ t('entry.list.table.title') }</th>
@@ -87,15 +94,17 @@ const EntryList = () => {
                 <tbody>
                     {entries.map((entry) => (
                         <tr key={entry.id}>
-                            <td>
-                                <Link to={`/entries/${entry.id}`}>{entry.title}</Link>
+                            <td className="entry-table__title-cell">
+                                <Link to={`/entries/${entry.id}`} className="entry-table__link">
+                                    {entry.title || t('entry.list.untitled')}
+                                </Link>
                             </td>
-                            <td>{format(new Date(entry.entry_date), 'PP')}</td>
+                            <td>{format(new Date(entry.entry_date), 'EEEE PP')}</td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
-            <Pagination>
+            <Pagination className="entry-pagination">
                 <Pagination.First onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
                 <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
                 {renderPaginationItems()}

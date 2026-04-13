@@ -165,3 +165,7 @@ node_modules/
 # package-lock.json
 
 media/*
+
+.codex
+.codex/
+front/vendor/
