@@ -9,6 +9,8 @@
   --accent: #c95f3b;
   --accent-strong: #a94827;
   --accent-soft: rgba(201, 95, 59, 0.14);
+  --new-action: #2563eb;
+  --new-action-strong: #1d4ed8;
   --shadow-soft: 0 18px 48px rgba(31, 41, 51, 0.08);
   --shadow-subtle: 0 10px 24px rgba(31, 41, 51, 0.06);
   --radius-lg: 28px;
@@ -93,7 +95,6 @@ code {
   margin-left: auto;
 }
 
-.app-navbar__new-button,
 .entry-form__save,
 .view-toggle .btn-primary {
   background: var(--accent);
@@ -103,14 +104,26 @@ code {
   box-shadow: 0 14px 30px rgba(201, 95, 59, 0.22);
 }
 
-.app-navbar__new-button:hover,
-.app-navbar__new-button:focus,
 .entry-form__save:hover,
 .entry-form__save:focus,
 .view-toggle .btn-primary:hover,
 .view-toggle .btn-primary:focus {
   background: var(--accent-strong);
   border-color: var(--accent-strong);
+}
+
+.app-navbar__new-button {
+  background: var(--new-action);
+  border-color: var(--new-action);
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.22);
+}
+
+.app-navbar__new-button:hover,
+.app-navbar__new-button:focus {
+  background: var(--new-action-strong);
+  border-color: var(--new-action-strong);
 }
 
 .app-navbar__logout {
