@@ -73,7 +73,6 @@ const EntryEditor = () => {
                     <h1 className="entry-header__title">
                         {id ? t('entry.edit.heading_existing') : t('entry.edit.heading_new')}
                     </h1>
-                    <p className="entry-header__subtitle">{t('entry.edit.subtitle')}</p>
                 </div>
                 {id && (
                     <div className="entry-header__actions">

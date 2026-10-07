@@ -94,7 +94,6 @@ const EntryView = () => {
                         <div>
                             <p className="entry-header__eyebrow">{format(new Date(entry.entry_date), 'EEEE PP')}</p>
                             <h1 className="entry-header__title">{entry.title}</h1>
-                            <p className="entry-header__subtitle">{t('entry.view.subtitle')}</p>
                         </div>
                         <div className="entry-header__actions">
                             <Button variant='outline-secondary' onClick={handleShowInCalendar}>

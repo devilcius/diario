@@ -10,11 +10,9 @@
     "entry.edit.mode.editing": "Editando",
     "entry.edit.mode.new": "Nueva entrada",
     "entry.edit.show_in_calendar": "Mostrar en el calendario",
-    "entry.edit.subtitle": "Guarda los detalles y vuelve al calendario o a la lectura cuando necesites contexto.",
     "entry.edit.view_entry": "Ver entrada",
     "entry.list.empty": "No hay entradas que coincidan con la búsqueda.",
-    "entry.list.section_label": "Espacio de trabajo",
-    "entry.list.subtitle": "Muévete entre las entradas recientes y el calendario sin perder el contexto.",
+    "entry.list.subtitle": "Un registro de los momentos que importan.",
     "entry.list.summary": "{{count}} entradas en la página {{page}} de {{totalPages}}",
     "entry.list.table.date": "Fecha",
     "entry.list.table.title": "Título",    
@@ -33,7 +31,6 @@
     "entry.view.previous_short": "Anterior",
     "entry.view.show_in_calendar": "Mostrar en el calendario",
     "entry.view.show_in_list": "Mostrar en la lista",
-    "entry.view.subtitle": "Muévete entre la lectura, la edición y el calendario sin perder el contexto.",
     "general.loading": "Cargando...",    
     "login.form.login_button": "Autenticar",
     "login.form.password": "Contraseña",
@@ -43,5 +40,7 @@
     "navbar.entries": "Entradas",
     "navbar.logout": "Cerrar sesión",
     "navbar.new": "Nueva",
-    "navbar.previous_years": "Años anteriores"
+    "navbar.previous_years": "Años anteriores",
+    "navbar.theme.switch_to_dark": "Cambiar al tema oscuro",
+    "navbar.theme.switch_to_light": "Cambiar al tema claro"
 }

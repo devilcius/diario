@@ -10,11 +10,9 @@
     "entry.edit.mode.editing": "Editing",
     "entry.edit.mode.new": "New entry",
     "entry.edit.show_in_calendar": "Show in calendar",
-    "entry.edit.subtitle": "Capture the details now and return to the calendar or reader view whenever you need context.",
     "entry.edit.view_entry": "View entry",
     "entry.list.empty": "No entries match your search yet.",
-    "entry.list.section_label": "Workspace",
-    "entry.list.subtitle": "Move between recent entries and the calendar without losing context.",
+    "entry.list.subtitle": "A record of the moments that matter.",
     "entry.list.summary": "{{count}} entries on page {{page}} of {{totalPages}}",
     "entry.list.table.date": "Date",
     "entry.list.table.title": "Title",
@@ -33,7 +31,6 @@
     "entry.view.previous_short": "Previous",
     "entry.view.show_in_calendar": "Show in calendar",
     "entry.view.show_in_list": "Show in list",
-    "entry.view.subtitle": "Move between reading, editing, and calendar context without losing your place.",
     "general.loading": "Loading...",    
     "login.form.login_button": "Login",
     "login.form.password": "Password",
@@ -43,6 +40,8 @@
     "navbar.entries": "Entries",
     "navbar.logout": "Logout",
     "navbar.new": "New",
-    "navbar.previous_years": "Previous Years"
+    "navbar.previous_years": "Previous Years",
+    "navbar.theme.switch_to_dark": "Switch to dark theme",
+    "navbar.theme.switch_to_light": "Switch to light theme"
 
 }

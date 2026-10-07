@@ -29,7 +29,6 @@ const EntriesPage = () => {
         <Container className="entries-page">
             <div className="page-hero">
                 <div>
-                    <p className="page-hero__eyebrow">{t('entry.list.section_label')}</p>
                     <h1 className="page-hero__title">{t('entry-list-title')}</h1>
                     <p className="page-hero__subtitle">{t('entry.list.subtitle')}</p>
                 </div>

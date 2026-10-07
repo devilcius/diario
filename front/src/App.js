@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import Routes from './routes';
-import { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from './api/auth';
 import { t } from 'i18next';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      return savedTheme;
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
 
   const handleLogout = () => {
     setIsAuthenticated(false);
@@ -24,6 +31,15 @@ const App = () => {
       navigate('/login');
     }
   }, [navigate]);  
+
+  useEffect(() => {
+    document.documentElement.dataset.bsTheme = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((currentTheme) => currentTheme === 'dark' ? 'light' : 'dark');
+  };
 
   return (
     <div className="app-shell">
@@ -46,6 +62,15 @@ const App = () => {
               <div className="app-navbar__actions">
                 <Button as={NavLink} to="/entries/edit" className="app-navbar__new-button">
                   {t('navbar.new')}
+                </Button>
+                <Button
+                  variant="link"
+                  onClick={toggleTheme}
+                  className="app-navbar__theme-toggle"
+                  aria-label={t(theme === 'dark' ? 'navbar.theme.switch_to_light' : 'navbar.theme.switch_to_dark')}
+                  title={t(theme === 'dark' ? 'navbar.theme.switch_to_light' : 'navbar.theme.switch_to_dark')}
+                >
+                  <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
                 </Button>
                 <Button variant="link" onClick={handleLogout} className="app-navbar__logout">
                   {t('navbar.logout')}
